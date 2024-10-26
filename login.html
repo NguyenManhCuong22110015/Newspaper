@@ -5,9 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="login.css"/>
 </head>
 <body>
-    <div class="container-sm bg-dark">hi</div>
+   <form>
+    <div class="content">
+        <div class="data">
+            <h4 class="text-center" > Logo </h4>
+            <h4 class="text-center"><b>Sign in to your CNN account</b></h4>
+            <h5 class="text-center" >Don't have an account? <a href="google.com" > Sign up</a>  </h5>
+            <div class="mt-4">
+                <input type="text" required />
+                <label placeholder="Adaptive Placeholder" alt="Email address"></label>
+            </div>
+            <div>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder=""required />
+                    <label placeholder="Adaptive Placeholder" alt="Enter password" ></label>
+                    <span id="toggle-password" onclick="togglePassword()">👁️</span>
+                    
+                </div>
+                
+            </div>
+            <a>Forgot password?</a><br/>
+            <button href="#"  class="submit mt-3 ">Sign in</button>
+            <div class="divider mt-3">
+                <span>or</span>
+            </div>
+            <p>By creating an account or signing in, I agree to the Terms of Use and have read our Privacy Policy.</p>
+            <div class="login-buttons">
+                <button class="btn btn-social btn-google">
+                  <i class="fab fa-google"></i> Continue with Google
+                </button>
+            
+                <button class="btn btn-social btn-facebook">
+                  <i class="fab fa-facebook-f"></i> Continue with Facebook
+                </button>
+            
+                <button class="btn btn-social btn-apple">
+                  <i class="fab fa-apple"></i> Continue with Apple 
+                </button>
+              </div>
+        </div>
+      
+    </div>
+    
+   </form>
+   
+   <script>
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const toggleIcon = document.getElementById("toggle-password");
+      
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleIcon.textContent = "🙈";  // Thay đổi icon khi hiển thị mật khẩu
+      } else {
+        passwordField.type = "password";
+        toggleIcon.textContent = "👁️";  // Trở lại icon mắt khi ẩn mật khẩu
+      }
+    }
+  </script>
 </body>
 </html>
