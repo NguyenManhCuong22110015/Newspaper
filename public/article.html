@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Article</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 id="article-title" class="text-center mb-4"></h1>
+        <div id="article-content" class="border p-3"></div>
+    </div>
+
+    <script>
+      // Lấy ID bài viết từ URL, ví dụ: /article.html?id=1
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleId = urlParams.get('id');
+
+      if (articleId) {
+        // Gọi API để lấy dữ liệu bài viết
+        fetch(`/get-article/${articleId}`)
+          .then(response => {
+            if (!response.ok) throw new Error('Không tìm thấy bài viết');
+            return response.json();
+          })
+          .then(data => {
+            // Hiển thị tiêu đề và nội dung bài viết
+            document.getElementById('article-title').textContent = data.title;
+            document.getElementById('article-content').innerHTML = data.content;
+          })
+          .catch(error => {
+            console.error(error);
+            document.getElementById('article-content').textContent = 'Lỗi khi tải bài viết';
+          });
+      } else {
+        document.getElementById('article-content').textContent = 'Không có ID bài viết được cung cấp';
+      }
+    </script>
+</body>
+</html>

@@ -248,8 +248,8 @@ form {
   }
 
   .btn-apple:hover {
-    background-color: #ff815e;
-    color: black;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
   }
 
 .sm-txt {
@@ -325,7 +325,7 @@ form {
   
 @media screen and (min-width: 960px) {
     body {
-        background-image: url(../imgs/mobile-gradient.png);
+        background-image: url( ../imgs/mobile-gradient.png);
         background-size: cover;         
         background-position: center;    
         background-repeat: no-repeat;   

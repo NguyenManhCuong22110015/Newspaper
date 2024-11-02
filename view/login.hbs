@@ -6,11 +6,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="login.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    
 </head>
 <body>
     
-        <form class="form-login">
+        <div class="form-login">
+            <form class="">
             <div class="content">
                 <div class="data">
                     <h4 class="text-center" > Logo </h4>
@@ -34,20 +36,22 @@
                     </div>
                     <p>By creating an account or signing in, I agree to the Terms of Use and have read our Privacy Policy.</p>
                     <div class="login-buttons">
-                        <button class="btn btn-social btn-google">
+                        <button type="button" class="btn btn-social btn-google" onclick="window.location.href='/auth/google'">
                         <i class="fab fa-google"></i> Continue with Google
                         </button>
-                        <button class="btn btn-social btn-facebook">
+                        <button type="button" class="btn btn-social btn-facebook" onclick="window.location.href='/auth/facebook'" > 
                         <i class="fab fa-facebook-f"></i> Continue with Facebook
                         </button>
-                        <button class="btn btn-social btn-apple">
-                        <i class="fab fa-apple"></i> Continue with Apple 
+                        <button  type="button" class="btn btn-social btn-apple" onclick="window.location.href='/auth/github'" >
+                        <i class="fab fa-github"></i> Continue with Github 
                         </button>
                     </div>
                 </div>
             </div>
         </form>
-        <form class="form-reset-password">
+        </div>
+        <div class="form-reset-password">
+            <form class="form-reset-password">
                 <div class="content">
                     <h4 class="text-center" > Logo </h4> <br/>
                     <h4 class="text-center"><b>Reset your password</b></h4>
@@ -59,6 +63,8 @@
                     </div>
                 </div>
         </form>
+        </div>
+        
 
         <form class="form-signup">
             <div class="content">
@@ -88,14 +94,14 @@
                     </div>
                     
                     <div class="login-buttons">
-                        <button class="btn btn-social btn-google">
+                        <button type="button" class="btn btn-social btn-google" onclick="window.location.href='/auth/google'">
                         <i class="fab fa-google"></i> Continue with Google
                         </button>
-                        <button class="btn btn-social btn-facebook">
+                        <button type="button" class="btn btn-social btn-facebook" onclick="window.location.href='/auth/facebook'" > 
                         <i class="fab fa-facebook-f"></i> Continue with Facebook
                         </button>
-                        <button class="btn btn-social btn-apple">
-                        <i class="fab fa-apple"></i> Continue with Apple 
+                        <button  type="button" class="btn btn-social btn-apple" onclick="window.location.href='/auth/github'" >
+                        <i class="fab fa-github"></i> Continue with Github 
                         </button>
                     </div>
                 </div>
