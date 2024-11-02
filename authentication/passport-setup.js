@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-
+import dotenv from 'dotenv';  
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -12,9 +12,9 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(new GoogleStrategy({
-    clientID: '545441830130-9hkn13rd4l8a8vjso6bl6kebfitbcqen.apps.googleusercontent.com',
-    clientSecret: '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',
-    callbackURL: '/auth/google/callback',
+    clientID: process.env.PASSPORT_CLIENT_ID,
+    clientSecret: process.env.PASSPORT_CLIENT_SECRET,
+    callbackURL: process.env.PASSPORT_CALLBACK_URL,
 }, (accessToken, refreshToken, profile, done) => {
     // Lưu thông tin người dùng vào DB hoặc xử lý theo nhu cầu
     done(null, profile);
