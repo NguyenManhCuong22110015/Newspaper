@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #316da9;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h2 {
+            margin: 0;
+        }
+        .add-button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .filter-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .filter-container label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .filter-container select {
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .table-container {
+            overflow-x: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        table th {
+            background-color: #316da9;
+            color: white;
+            font-weight: bold;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .search-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        .search-container input {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid ms-5 me-5 mt-5">
+        <!-- Header Section -->
+        <div class="header">
+            <h2>Artiles</h2>
+           <a href="/writer/add-article" > <button class="add-button"><i class="bi bi-file-earmark-plus-fill"></i> Add</button></a>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filter-container">
+            <div>
+                <label for="payment-status">Payment Status:</label>
+                <select id="payment-status">
+                    <option value="">Select</option>
+                    <option value="pending">Pending</option>
+                    <option value="success">Success</option>
+                    <option value="canceled">Canceled</option>
+                </select>
+            </div>
+            <div>
+                <label for="booking-status">Booking Status:</label>
+                <select id="booking-status">
+                    <option value="">Select</option>
+                    <option value="pending">Pending</option>
+                    <option value="success">Success</option>
+                    <option value="canceled">Canceled</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        
+                        <th>Summary</th>
+                        <th>Create At</th>
+                        <th>Update At</th>
+                        <th>Status</th>
+                        <th scope="col">&nbsp</th>
+                        <th scope="col">&nbsp</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this.list}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{title}}</td>
+                        <td>{{summary}}</td>
+                        <td>{{created_at}}</td>
+                        <td>{{updated_at}}</td>
+                        <td>{{status}}</td>
+                        <td  >
+                            <a href="/writer/edit-article?id={{id}}" >
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <i class="bi bi-archive-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-container">
+            <label for="search">Search:</label>
+            <input type="text" id="search" placeholder="Customer Name">
+        </div>
+    </div>
+</body>
+</html>

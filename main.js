@@ -39,6 +39,16 @@ app.engine('hbs', engine({
   app.use('/', router);
   
 
+import authLogin from  './routes/authLoginRoute.js';
+
+app.use('/auth', authLogin);
+
+import writerRoute from  './routes/writerRoute.js';
+
+app.use('/writer', writerRoute);
+
+
+
 app.get("/", (req, res) => {
     res.send("Hello word")
 })
