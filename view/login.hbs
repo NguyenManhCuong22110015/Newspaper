@@ -11,45 +11,50 @@
 </head>
 <body>
     
-        <div class="form-login">
-            <form class="">
-            <div class="content">
-                <div class="data">
-                    <h4 class="text-center" > Logo </h4>
-                    <h4 class="text-center"><b>Sign in to your CNN account</b></h4>
-                    <h5 class="text-center" >Don't have an account? <span class="redr" onclick="showFormSignUp()" > Sign up</span>  </h5>
-                    <div class="mt-4">
-                        <input type="text" required />
-                        <label placeholder="Adaptive Placeholder" alt="Email address"></label>
-                    </div>
-                    <div>
-                        <div class="password-container">
-                            <input type="password" id="password" placeholder=""required />
-                            <label placeholder="Adaptive Placeholder" alt="Enter password" ></label>
-                            <span id="toggle-password" onclick="togglePassword()">👁️</span>  
-                        </div>
-                    </div>
-                    <span class="redr" onClick="showResetPassword()">Forgot password?</span><br/>
-                    <button href="#"  class="submit mt-3 ">Sign in</button>
-                    <div class="divider mt-3">
-                        <span>or</span>
-                    </div>
-                    <p>By creating an account or signing in, I agree to the Terms of Use and have read our Privacy Policy.</p>
-                    <div class="login-buttons">
-                        <button type="button" class="btn btn-social btn-google" onclick="window.location.href='/auth/google'">
-                        <i class="fab fa-google"></i> Continue with Google
-                        </button>
-                        <button type="button" class="btn btn-social btn-facebook" onclick="window.location.href='/auth/facebook'" > 
-                        <i class="fab fa-facebook-f"></i> Continue with Facebook
-                        </button>
-                        <button  type="button" class="btn btn-social btn-apple" onclick="window.location.href='/auth/github'" >
-                        <i class="fab fa-github"></i> Continue with Github 
-                        </button>
+<div class="form-login">
+    <form class="" method="post">
+        <div class="content">
+            <div class="data">
+                <h4 class="text-center">Logo</h4>
+                <h4 class="text-center"><b>Sign in to your CNN account</b></h4>
+                <h5 class="text-center">Don't have an account? <span class="redr" onclick="showFormSignUp()">Sign up</span></h5>
+                <div class="mt-4">
+                    <input type="text" required name="login_email" />
+                    <label placeholder="Adaptive Placeholder" alt="Email address"></label>
+                </div>
+                <div>
+                    <div class="password-container">
+                        <input type="password" id="password" name="login_password" placeholder="" required />
+                        <label placeholder="Adaptive Placeholder" alt="Enter password"></label>
+                        <span id="toggle-password" onclick="togglePassword()">👁️</span>  
                     </div>
                 </div>
+                {{#if errorMessage}}
+                    <span style="" class="btn btn-danger w-100">{{errorMessage}}</span>
+                {{/if}}
+                <span class="redr" onclick="showResetPassword()">Forgot password?</span><br/>
+                <button type="submit" class="submit mt-3" formaction="/auth/login">Sign in</button>
+                <div class="divider mt-3">
+                    <span>or</span>
+                </div>
+                <p>By creating an account or signing in, I agree to the Terms of Use and have read our Privacy Policy.</p>
+                <div class="login-buttons">
+                    <button type="button" class="btn btn-social btn-google" onclick="window.location.href='/auth/google'">
+                        <i class="fab fa-google"></i> Continue with Google
+                    </button>
+                    <button type="button" class="btn btn-social btn-facebook" onclick="window.location.href='/auth/facebook'">
+                        <i class="fab fa-facebook-f"></i> Continue with Facebook
+                    </button>
+                    <button type="button" class="btn btn-social btn-apple" onclick="window.location.href='/auth/github'">
+                        <i class="fab fa-github"></i> Continue with Github
+                    </button>
+                </div>
             </div>
-        </form>
         </div>
+    </form>
+</div> 
+
+       
         <div class="form-reset-password">
             <form class="">
                 <div class="content">
@@ -66,7 +71,7 @@
         </div>
         
 
-        <form class="form-signup">
+        <form class="form-signup"  method="post" >
             <div class="content">
                 <div class="data">
                     <h4 class="text-center" > Logo </h4>
@@ -74,21 +79,23 @@
                     <h5 class="text-center" >Already have an account? <span class="redr" onclick="showFormLogIn()" > Sign in</span>  </h5>
                     
                     <div class="mt-4">
-                        <input type="text" required />
+                        <input type="text" name="reg_email" required />
                         <label placeholder="Adaptive Placeholder" alt="Email address"></label>
                     </div>
                     <div>
                         <div class="password-container">
-                            <input type="password" id="password2" placeholder=""required />
+                            <input type="password" id="password2"  name="reg_password" placeholder=""required />
                             <label placeholder="Adaptive Placeholder" alt="Enter password" ></label>
                             <span id="toggle-password2" onclick="togglePassword2()">👁️</span>  
                         </div>
                     </div>
                     <p class="sm-txt">By creating an account, I agree to the Terms of Use and have read our Privacy Policy.</p>
                     <label>
-                        
+                     {{#if errorMessage}}
+                         <span style="" class="btn btn-danger w-100">{{errorMessage}}</span>
+                     {{/if}}
                     </label>
-                    <button href="#"  class="submit  ">Create Account</button>
+                    <button type="submit"  class="submit" formaction="/auth/signup" >Create Account</button>
                     <div class="divider mt-3">
                         <span>or</span>
                     </div>

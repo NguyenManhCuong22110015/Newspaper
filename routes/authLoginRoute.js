@@ -3,6 +3,8 @@ import facebookPassport from '../authentication/facebook.js';
 import googlePassport from '../authentication/google.js';
 import githubPassport from '../authentication/github.js';
 import saveUserToDatabase from '../service/userService.js';
+import authService from '../service/authService.js';
+
 
 const router = Router();
 
@@ -35,6 +37,59 @@ router.get(
 );
 
 
+
+router.post('/login', async (req, res) => { // Thêm async
+  const email = req.body.login_email || '';
+  const password = req.body.login_password || '';
+  try {
+    const user = await authService.login(email, password); 
+    if (!user) {
+      req.flash('error', 'Invalid email or password');
+      return res.redirect('/login');
+    }
+    req.user = user;
+    req.session.userId = user.id;
+    req.session.role = user.role;
+    console.log(req.user)
+    res.cookie('userRole', user.role, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.redirect('/'); 
+  } catch (error) {
+    console.error('Error logging in:', error);
+    req.session.errorMessage = 'Internal server error';
+    res.redirect('/auth/login');
+  }
+});
+
+
+router.post('/signup', async (req, res) => {
+  const email = req.body.reg_email || '';
+  const password = req.body.reg_password || '';
+
+  try {
+    const existingUser = await authService.checkAccountOrCreateAccount(email, password);
+
+    if (existingUser === null) {
+      req.flash('error', 'Account already exists. Please log in.');
+      return res.redirect('/login');
+    }
+    const user = await authService.login(email, password); 
+    if (!user) {
+      req.flash('error', 'Invalid email or password');
+      return res.redirect('/login');
+    }
+    req.user = user;
+    req.session.userId = user.id;
+    req.session.role = user.role;
+    res.cookie('userRole', user.role, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.redirect('/'); 
+  } catch (error) {
+    console.error('Error during signup:', error);
+    req.flash('error', 'Internal server error');
+    res.redirect('/auth/login');
+  }
+});
+
+
 router.get('/google',googlePassport.authenticate('google', { scope: ['profile', 'email'] ,prompt: 'select_account' }));
 router.get('/google/callback',googlePassport.authenticate('google', { failureRedirect: '/login' }),
 async (req, res) => {
@@ -42,7 +97,7 @@ async (req, res) => {
     const user = await saveUserToDatabase(req.user, 'google');
     req.session.userId = user.id;
     req.session.role = user.role;
-
+    
     // Set role cookie
     res.cookie('userRole', user.role, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }); // 1 day
     res.redirect('/');

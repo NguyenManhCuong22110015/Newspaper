@@ -94,6 +94,80 @@
             border: 1px solid #ccc;
             width: 200px;
         }
+                .status-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .filter-container {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .status-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .status-button {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: #151111;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .status-button-number {
+            padding: 5px 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .status-button span {
+            margin-left: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Chỉ tô màu nền cho số */
+        .status-button-number.empty {
+            background-color: #007bff;
+        }
+
+        .status-button-number.occupied {
+            background-color: #28a745;
+        }
+
+        .status-button-number.booking {
+            background-color: #6f42c1;
+        }
+
+        .status-button-number.checkout {
+            background-color: #fd7e14;
+        }
+
+        .status-button-number.maintenance {
+            background-color: #dc3545;
+        }
+        .status-button:hover .status-button-number,
+        .status-button:hover span {
+            
+            color: black;
+        }
+
+        .status-button:hover {
+            transform: translateY(-5px);
+  }
     </style>
 </head>
 <body>
@@ -105,25 +179,22 @@
         </div>
 
         <!-- Filters Section -->
-        <div class="filter-container">
-            <div>
-                <label for="payment-status">Payment Status:</label>
-                <select id="payment-status">
-                    <option value="">Select</option>
-                    <option value="pending">Pending</option>
-                    <option value="success">Success</option>
-                    <option value="canceled">Canceled</option>
-                </select>
+        <div class="filter-container w-100 d-flex justify-content-between">
+             <div class="status-container">
+                <div class="status-button">
+                    <span class="status-button-number empty">2</span> <span>: Approved & Pending Publication</span>
+                </div>
+                <div class="status-button">
+                    <span class="status-button-number occupied">1</span> <span>: Published</span>
+                </div>
+                <div class="status-button">
+                    <span class="status-button-number booking">0</span> <span>: Rejected</span>
+                </div>
+                <div class="status-button">
+                    <span class="status-button-number checkout">0</span> <span>: Not Approved</span>
+                </div>
             </div>
-            <div>
-                <label for="booking-status">Booking Status:</label>
-                <select id="booking-status">
-                    <option value="">Select</option>
-                    <option value="pending">Pending</option>
-                    <option value="success">Success</option>
-                    <option value="canceled">Canceled</option>
-                </select>
-            </div>
+
         </div>
 
         <!-- Table Section -->

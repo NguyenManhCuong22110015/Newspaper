@@ -6,6 +6,15 @@
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
 }
+
+i {
+  font-size:20px;
+}
+
+.body{
+  font-family: cnn_sans_display, helveticaneue, Helvetica, Arial, Utkal, sans-serif;
+}
+
 .sidebar{
   position: fixed;
   left: 0;

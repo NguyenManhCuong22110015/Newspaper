@@ -9,10 +9,11 @@ import facebookPassport from './authentication/facebook.js';
 import googlePassport from './authentication/google.js';
 import router from './routes/index.js';
 import githubPassport from './authentication/github.js';
+import flash from 'connect-flash';
 const app = express()
 
 
-app.engine('hbs', engine({
+   app.engine('hbs', engine({
     extname : 'hbs',
     
   }));
@@ -22,11 +23,25 @@ app.engine('hbs', engine({
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   app.use(express.static(path.join(__dirname, 'public')));
+  
   app.use(session({
       secret: 'Q2VNTVN3QklsQXZTRmFhRHV6ZEtKcHhDdFNldG4xTHdGSzRCWkunSmJ5UT8',
       resave: false,
       saveUninitialized: true,
   }));
+  router.use((req, res, next) => {
+    if (req.session.user) {
+      req.user = req.session.user;
+    }
+    next();
+  });
+  app.use(flash());
+  app.use((req, res, next) => {
+    res.locals.errorMessage = req.flash('error');
+    next();
+});
+  
+  app.use(express.urlencoded({ extended: true }));
   app.use(express.json()); 
   app.use(facebookPassport.initialize());
   app.use(facebookPassport.session());
@@ -52,6 +67,10 @@ app.use('/writer', writerRoute);
 app.get("/", (req, res) => {
     res.send("Hello word")
 })
+
+
+
+
 
 app.listen(3000, ()  => {
     console.log("App is running")

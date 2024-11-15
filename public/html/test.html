@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status Buttons</title>
+<style>
+  .status-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .status-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #151111;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .status-button-number {
+    padding: 5px 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .status-button span {
+    margin-left: 8px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  /* Chỉ tô màu nền cho số */
+  .status-button-number.empty {
+    background-color: #007bff;
+  }
+
+  .status-button-number.occupied {
+    background-color: #28a745;
+  }
+
+  .status-button-number.booking {
+    background-color: #6f42c1;
+  }
+
+  .status-button-number.checkout {
+    background-color: #fd7e14;
+  }
+
+  .status-button-number.maintenance {
+    background-color: #dc3545;
+  }
+
+  /* Hover: thay đổi màu nền và chữ của cả số và phần mô tả */
+  .status-button:hover .status-button-number,
+  .status-button:hover span {
+    background-color: white;
+    color: black;
+  }
+
+  .status-button:hover {
+    transform: translateY(-5px);
+  }
+</style>
+</head>
+<body>
+
+<div class="status-container">
+  <div class="status-button">
+    <span class="status-button-number empty">2</span> <span>: Approved & Pending Publication</span>
+  </div>
+  <div class="status-button">
+    <span class="status-button-number occupied">1</span> <span>: Published</span>
+  </div>
+  <div class="status-button">
+    <span class="status-button-number booking">0</span> <span>: Rejected</span>
+  </div>
+  <div class="status-button">
+    <span class="status-button-number checkout">0</span> <span>: Not Approved</span>
+  </div>
+</div>
+
+</body>
+</html>
