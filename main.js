@@ -62,7 +62,9 @@ import writerRoute from  './routes/writerRoute.js';
 
 app.use('/writer', writerRoute);
 
+import adminRoute from  './routes/adminRoute.js';
 
+app.use('/admin', adminRoute);
 
 app.get("/", (req, res) => {
     res.send("Hello word")

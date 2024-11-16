@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => { // Thêm async
     req.user = user;
     req.session.userId = user.id;
     req.session.role = user.role;
-    console.log(req.user)
+    
     res.cookie('userRole', user.role, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
     res.redirect('/'); 
   } catch (error) {

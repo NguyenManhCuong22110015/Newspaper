@@ -12,7 +12,7 @@ router.get('/articles', async (req, res) => {
     const userID = req.session.userId || 6;
      const list = await articleService.getArticlesByWriterID(userID);
    
-     res.render('writer/list-articles', {layout: "nav-bar-admin", list : list});
+     res.render('writer/list-articles', {layout: "nav-bar-writer", list : list});
 });
 
 

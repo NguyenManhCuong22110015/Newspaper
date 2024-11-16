@@ -1,0 +1,63 @@
+<style>
+  body{
+    background-color:white !important;;
+  }
+</style>
+
+
+<div class="">
+        <div class="logo-details">
+          <i class='bx bxs-terminal'></i>
+            <div class="logo_name">Admin</div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+          <li>
+            <a href="/admin/categories" >
+              <i class='bx bxs-category'></i>
+              <span class="links_name">Categories</span>
+            </a>
+            <span class="tooltip">Categories</span>
+          </li>
+           <li>
+            <a href="/admin/tags" >
+              <i class='bx bxs-purchase-tag'></i>
+              <span class="links_name">Tags</span>
+            </a>
+            <span class="tooltip">Tags</span>
+          </li>
+           <li>
+            <a href="/admin/articles" >
+              <i class='bx bx-news'></i>
+              <span class="links_name">Articles</span>
+            </a>
+            <span class="tooltip">Articles</span>
+          </li>
+          <li>
+            <a href="/admin/users" >
+              <i class="bi bi-person-vcard-fill"></i>
+              <span class="links_name">Users</span>
+            </a>
+            <span class="tooltip">Users</span>
+          </li>
+          
+        </ul>
+    </div>
+<script>
+     let sidebar = document.querySelector(".sidebar");
+      let closeBtn = document.querySelector("#btn");
+      
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        menuBtnChange();
+      });
+
+      function menuBtnChange() {
+        if (sidebar.classList.contains("open")) {
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else {
+          closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+      }
+</script>
